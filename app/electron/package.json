@@ -7,7 +7,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win --x64"
+    "dist": "electron-builder --win --x64",
+    "release": "electron-builder --win --x64 --publish always"
   },
   "devDependencies": {
     "electron": "33.2.1",
@@ -16,14 +17,32 @@
   "build": {
     "appId": "com.avantis.pcassist",
     "productName": "PC Assist",
-    "directories": { "output": "dist-installer" },
-    "files": ["main.js", "preload.js"],
+    "directories": {
+      "output": "dist-installer"
+    },
+    "files": [
+      "main.js",
+      "preload.js"
+    ],
     "extraResources": [
-      { "from": "resources/frontend", "to": "frontend" },
-      { "from": "resources/backend", "to": "backend" }
+      {
+        "from": "resources/frontend",
+        "to": "frontend"
+      },
+      {
+        "from": "resources/backend",
+        "to": "backend"
+      }
     ],
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "icon": "build/icon.ico"
     },
     "nsis": {
@@ -33,6 +52,18 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "PC Assist"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Jemade",
+        "repo": "Avantis-support"
+      }
+    ],
+    "artifactName": "PC-Assist-Setup-${version}.${ext}"
+  },
+  "author": "Avantis Technologies Africa",
+  "dependencies": {
+    "electron-updater": "^6.3.9"
   }
 }

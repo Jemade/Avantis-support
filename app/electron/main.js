@@ -12,7 +12,7 @@
 // load the same front end and reach the same backend (see the "What was
 // added for the desktop version" section of README.txt in this folder).
 
-const { app, BrowserWindow, shell } = require("electron");
+const { app, BrowserWindow, shell, dialog } = require("electron");
 const path = require("path");
 const { spawn } = require("child_process");
 const http = require("http");
@@ -93,9 +93,74 @@ function createWindow() {
   });
 }
 
+
+// ---------------------------------------------------------------------------
+// Automatic updates.
+//
+// When you publish a new version on GitHub Releases, installed copies of the
+// app find it (when the computer is online), download it quietly, and offer
+// to restart into the new version. Only runs in the installed app, never in
+// development (npm start).
+// ---------------------------------------------------------------------------
+function tell(options) {
+  return mainWindow ? dialog.showMessageBox(mainWindow, options) : dialog.showMessageBox(options);
+}
+
+function setupAutoUpdate() {
+  if (!isPackaged) return;
+
+  let autoUpdater;
+  try {
+    ({ autoUpdater } = require("electron-updater"));
+  } catch (error) {
+    console.error("Auto-update is not available:", error);
+    return;
+  }
+
+  autoUpdater.autoDownload = true;
+  autoUpdater.autoInstallOnAppQuit = true;
+
+  autoUpdater.on("update-available", (info) => {
+    tell({
+      type: "info",
+      title: "Update available",
+      message: `PC Assist ${info.version} is available.`,
+      detail: "It is downloading in the background. You can keep using the app.",
+      buttons: ["OK"],
+    });
+  });
+
+  autoUpdater.on("update-downloaded", (info) => {
+    tell({
+      type: "info",
+      title: "Update ready",
+      message: `PC Assist ${info.version} has been downloaded.`,
+      detail: "Restart now to finish updating, or it will install the next time you close the app.",
+      buttons: ["Restart now", "Later"],
+      defaultId: 0,
+      cancelId: 1,
+    }).then(({ response }) => {
+      if (response === 0) {
+        stopBackend();
+        autoUpdater.quitAndInstall();
+      }
+    });
+  });
+
+  autoUpdater.on("error", (error) => {
+    // Being offline is normal. Never bother the user with this.
+    console.error("Update check failed:", error && error.message ? error.message : error);
+  });
+
+  const check = () => autoUpdater.checkForUpdates().catch(() => {});
+  setTimeout(check, 5000);                    // shortly after the app opens
+  setInterval(check, 4 * 60 * 60 * 1000);     // then every 4 hours while it stays open
+}
+
 app.whenReady().then(() => {
   startBackend();
   createWindow();
+  setupAutoUpdate();
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
