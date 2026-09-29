@@ -1,0 +1,38 @@
+{
+  "name": "pc-assist-desktop",
+  "productName": "PC Assist",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Avantis PC Assist desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.avantis.pcassist",
+    "productName": "PC Assist",
+    "directories": { "output": "dist-installer" },
+    "files": ["main.js", "preload.js"],
+    "extraResources": [
+      { "from": "resources/frontend", "to": "frontend" },
+      { "from": "resources/backend", "to": "backend" }
+    ],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "PC Assist"
+    }
+  }
+}

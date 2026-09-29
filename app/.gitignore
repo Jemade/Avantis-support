@@ -1,0 +1,33 @@
+# Dependencies
+frontend/node_modules/
+electron/node_modules/
+ 
+# Python virtual environment and cache
+backend/.venv/
+__pycache__/
+*.pyc
+ 
+# Build output (recreated by build-windows.bat or GitHub Actions)
+frontend/dist/
+backend/dist/
+backend/build/
+electron/dist-installer/
+ 
+# Built pieces copied into the installer (keep the .gitkeep placeholders)
+electron/resources/backend/*
+electron/resources/frontend/*
+!electron/resources/backend/.gitkeep
+!electron/resources/frontend/.gitkeep
+ 
+# Secrets and local files
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db
+
+node_modules/
+**/node_modules/
+dist/
+build/
+.venv/
