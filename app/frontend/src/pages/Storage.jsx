@@ -44,19 +44,19 @@ export default function Storage() {
               className="bar"
               role="progressbar"
               aria-label={`${drive.name} storage used`}
-              aria-valuemin={0}
-              aria-valuemax={100}
+              aria-valuemin="0"
+              aria-valuemax="100"
               aria-valuenow={drive.percent_used}
             >
               <div
                 className={drive.status === "ok" ? "bar-fill" : "bar-fill low"}
                 style={{ width: drive.percent_used + "%" }}
-              >
-                <span>{formatBytes(drive.used)} used</span>
-              </div>
+              />
+              <span className={`bar-label${drive.percent_used >= 30 ? " on-fill" : ""}`}>
+                {formatBytes(drive.used)} used
+              </span>
             </div>
             <div className="bar-labels">
-              <span>{formatBytes(drive.used)} used</span>
               <span>
                 {formatBytes(drive.free)} free of {formatBytes(drive.total)}
               </span>

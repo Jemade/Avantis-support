@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useApi } from "./api.js";
 import Sidebar from "./components/Sidebar.jsx";
 import Assist from "./pages/Assist.jsx";
 import Performance from "./pages/Performance.jsx";
@@ -8,20 +9,22 @@ import About from "./pages/About.jsx";
 
 export default function App() {
   const [page, setPage] = useState("assist");
-  const [isStarting, setIsStarting] = useState(true);
+  const [minimumSplashElapsed, setMinimumSplashElapsed] = useState(false);
+  const { data, error } = useApi("/api/overview", page === "assist" ? 2000 : 0);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsStarting(false), 2500);
+    const timer = setTimeout(() => setMinimumSplashElapsed(true), 2400);
     return () => clearTimeout(timer);
   }, []);
 
-  if (isStarting) {
+  if (!minimumSplashElapsed || (!data && !error)) {
     return (
-      <div className="startup-screen" role="status" aria-live="polite">
-        <div className="startup-brand">AVANTIS</div>
-        <div className="startup-name">PC ASSIST</div>
-        <div className="startup-spinner" aria-hidden="true" />
-        <span className="startup-loading">Loading</span>
+      <div className="splash" role="status" aria-live="polite">
+        <div className="splash-content">
+          <h1>AVANTIS PC ASSIST</h1>
+          <span className="splash-spinner" aria-hidden="true" />
+          <p>Loading...</p>
+        </div>
       </div>
     );
   }
@@ -30,7 +33,7 @@ export default function App() {
     <div className="app">
       <Sidebar page={page} onNavigate={setPage} />
       <main className="content">
-        {page === "assist" && <Assist onNavigate={setPage} />}
+        {page === "assist" && <Assist onNavigate={setPage} data={data} error={error} />}
         {page === "performance" && <Performance />}
         {page === "storage" && <Storage />}
         {page === "network" && <Network />}

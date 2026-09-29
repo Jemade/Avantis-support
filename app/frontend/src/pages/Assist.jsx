@@ -1,4 +1,3 @@
-import { useApi } from "../api.js";
 import { formatBits, formatBytes, formatPercent, orNA } from "../format.js";
 import Status, { Stale } from "../components/Status.jsx";
 
@@ -12,9 +11,7 @@ function Tile({ label, value, caption, onClick }) {
   );
 }
 
-export default function Assist({ onNavigate }) {
-  const { data, error } = useApi("/api/overview", 2000);
-
+export default function Assist({ onNavigate, data, error }) {
   return (
     <>
       <h1>Avantis Assist</h1>
