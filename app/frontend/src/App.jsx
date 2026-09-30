@@ -21,7 +21,10 @@ export default function App() {
     return (
       <div className="splash" role="status" aria-live="polite">
         <div className="splash-content">
-          <h1>AVANTIS PC ASSIST</h1>
+          <div className="logo-container">
+            <div className="brand-text">AVANTIS</div>
+            <div className="tagline">Product of Zimbabwe</div>
+          </div>
           <span className="splash-spinner" aria-hidden="true" />
           <p>Loading...</p>
         </div>

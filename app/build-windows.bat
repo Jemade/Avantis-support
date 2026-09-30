@@ -5,7 +5,7 @@ echo ============================================
 echo   PC Assist - build the installer (Windows)
 echo ============================================
 echo.
-echo This turns the app into one file: PC Assist Setup 1.0.0.exe
+echo This turns the app into one file: PC-Assist-Setup-1.0.0.exe
 echo You only need to run this once, on one Windows computer that has
 echo Python and Node.js installed. The installer it produces can then be
 echo copied to any other Windows computer, with nothing else installed.
@@ -77,7 +77,7 @@ echo.
 echo ============================================
 echo   Done.
 echo   Find it in: electron\dist-installer\
-echo   Look for:   PC Assist Setup 1.0.0.exe
+echo   Look for:   PC-Assist-Setup-1.0.0.exe
 echo   That is the one file to share with people.
 echo ============================================
 pause
