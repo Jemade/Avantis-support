@@ -6,6 +6,7 @@ import Performance from "./pages/Performance.jsx";
 import Storage from "./pages/Storage.jsx";
 import Network from "./pages/Network.jsx";
 import About from "./pages/About.jsx";
+import favicon from "./assets/favicon.png";
 
 export default function App() {
   const [page, setPage] = useState("assist");
@@ -21,12 +22,10 @@ export default function App() {
     return (
       <div className="splash" role="status" aria-live="polite">
         <div className="splash-content">
-          <div className="logo-container">
-            <div className="brand-text">AVANTIS</div>
-            <div className="tagline">Product of Zimbabwe</div>
+          <div className="splash-spinner-container">
+            <span className="splash-spinner" aria-hidden="true" />
+            <img src={favicon} alt="Avantis" className="splash-spinner-icon" />
           </div>
-          <span className="splash-spinner" aria-hidden="true" />
-          <p>Loading...</p>
         </div>
       </div>
     );

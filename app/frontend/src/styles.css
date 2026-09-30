@@ -37,9 +37,33 @@ p { margin: 0; }
 .brand-text { color: #14b8a6; font-size: 56px; font-weight: 800; line-height: 1; }
 .tagline { color: #14b8a6; font-size: 13px; font-weight: 400; margin-top: 4px; }
 .splash-content p { color: #14b8a6; font-size: 15px; }
+.splash-spinner-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+}
 .splash-spinner {
-  width: 34px; height: 34px; border: 3px solid rgb(20 184 166 / 30%);
-  border-top-color: #14b8a6; border-radius: 50%; animation: splash-spin 0.8s linear infinite;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgb(20 184 166 / 25%);
+  border-top-color: #14b8a6;
+  border-radius: 50%;
+  animation: splash-spin 0.85s linear infinite;
+  box-sizing: border-box;
+}
+.splash-spinner-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: contain;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  user-select: none;
+  pointer-events: none;
 }
 @keyframes splash-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes splash-spin { to { transform: rotate(360deg); } }
