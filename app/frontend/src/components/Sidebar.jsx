@@ -55,13 +55,10 @@ export default function Sidebar({ page, onNavigate }) {
             window.open(FEEDBACK_URL, "_blank");
             onNavigate("feedback");
           }}
-          title="Give feedback (opens in browser)"
+          title="Feedback"
         >
           {icons.feedback}
           <span>Feedback</span>
-          <svg viewBox="0 0 16 16" width="11" height="11" style={{ marginLeft: "auto", opacity: 0.65 }} aria-hidden="true">
-            <path d="M6 3h7v7M13 3L6.5 9.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
         </button>
         <button className={page === "about" ? "nav-item active" : "nav-item"} onClick={() => onNavigate("about")}>
           {icons.about}
