@@ -279,56 +279,22 @@ body {
 .success-card-content {
   display: none;
   text-align: center;
-  padding: 16px 8px 8px;
-}
-
-.success-icon-wrapper {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--success-bg);
-  border: 2px solid var(--success-border);
-  color: var(--success);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 12px;
-}
-
-.success-icon-wrapper svg {
-  width: 28px;
-  height: 28px;
+  padding: 32px 16px 28px;
 }
 
 .success-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .success-message {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 18px;
-}
-
-.reset-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--teal-hover);
-  padding: 7px 18px;
-  border-radius: 5px;
-  font-size: 12.5px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.reset-btn:hover {
-  background: #f1f7f8;
-  border-color: var(--teal);
+  line-height: 1.6;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 /* ---------------- Footer ---------------- */

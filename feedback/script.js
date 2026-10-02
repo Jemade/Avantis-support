@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const alertBanner = document.getElementById("alertBanner");
   const alertMessage = document.getElementById("alertMessage");
   const successContent = document.getElementById("successContent");
-  const resetBtn = document.getElementById("resetBtn");
 
   // Handle Input State and Activation
   const updateInputState = () => {
@@ -102,6 +101,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (data && data.success) {
           form.style.display = "none";
           if (successContent) successContent.style.display = "block";
+
+          // Automatically return to the feedback form after 5 seconds
+          setTimeout(() => {
+            if (form) form.reset();
+            updateInputState();
+            hideAlert();
+            if (successContent) successContent.style.display = "none";
+            if (form) form.style.display = "block";
+            if (feedbackText) feedbackText.focus();
+          }, 5000);
         } else {
           const errorMsg = (data && data.message) ? data.message : "Could not send feedback. Please try again.";
           showAlert(errorMsg);
@@ -112,18 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } finally {
         setLoading(false);
       }
-    });
-  }
-
-  // Handle Reset / Submit Another
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      if (form) form.reset();
-      updateInputState();
-      hideAlert();
-      if (successContent) successContent.style.display = "none";
-      if (form) form.style.display = "block";
-      if (feedbackText) feedbackText.focus();
     });
   }
 
