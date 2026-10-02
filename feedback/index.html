@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avantis | Help us improve</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icon.png" />
+  <link rel="shortcut icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body>
+
+  <!-- Top Header with Avantis Brand Logo -->
+  <header class="top-header">
+    <a href="#" class="brand-link" title="Avantis PC Assist">
+      <img src="assets/avantis-logo.png" alt="Avantis" class="brand-logo" />
+    </a>
+  </header>
+
+  <!-- Main Feedback Container -->
+  <main class="main-wrapper">
+    <!-- Hero Title Section -->
+    <section class="hero-section">
+      <div class="hero-icon-container">
+        <img src="assets/icon.png" alt="Avantis Icon" class="hero-icon-img" />
+      </div>
+      <h1 class="hero-title">Help us improve</h1>
+      <p class="hero-subtitle">Your feedback helps enhance the PC Assist experience!</p>
+    </section>
+
+    <!-- Feedback Card -->
+    <div class="feedback-card" id="feedbackCard">
+      <!-- Alert Banner -->
+      <div id="alertBanner" class="alert-banner" role="alert">
+        <span id="alertMessage">An error occurred. Please try again.</span>
+      </div>
+
+      <!-- Feedback Form matching reference image -->
+      <form id="feedbackForm" action="send_feedback.php" method="POST" novalidate>
+        <h2 class="card-heading">Feedback</h2>
+
+        <div class="form-group">
+          <label for="feedbackText" class="form-label">
+            Describe what's happening <span class="required-star">*</span>
+          </label>
+          <textarea
+            id="feedbackText"
+            name="feedback"
+            class="feedback-textarea"
+            placeholder="Include details such as missing or incorrect links. Don't include your name, phone number, or other personal info"
+            required
+            maxlength="2500"
+          ></textarea>
+        </div>
+
+        <!-- Anti-spam Honeypot (hidden) -->
+        <div class="honeypot-field" aria-hidden="true">
+          <input type="text" id="website_verify" name="website_verify" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- Disclaimer Matching Image -->
+        <div class="disclaimer-text">
+          By clicking 'Send feedback', you agree to send your feedback for the improvement of Avantis's products and services.<br />
+          <a href="#" class="disclaimer-link" onclick="alert('Avantis Privacy: Feedback submitted here is securely sent to jayden.mapasure@avantis.co.zw to enhance the PC Assist experience.'); return false;">Avantis Privacy Statement</a>
+        </div>
+
+        <!-- Centered Submit Button -->
+        <div class="button-row">
+          <button type="submit" id="submitBtn" class="submit-btn" disabled>
+            <span class="btn-spinner" id="btnSpinner"></span>
+            <span id="btnText">Send feedback</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success Confirmation State -->
+      <div id="successContent" class="success-card-content">
+        <div class="success-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="success-title">Thank you for your feedback!</h3>
+        <p class="success-message">
+          Your feedback helps enhance the PC Assist experience and has been delivered to <strong>jayden.mapasure@avantis.co.zw</strong>.
+        </p>
+        <button type="button" id="resetBtn" class="reset-btn">Submit another response</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Page Footer matching design -->
+  <footer class="page-footer">
+    <div class="footer-privacy-row">
+      <a href="#" class="footer-link">
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="8" cy="8" r="6.5"/>
+          <path d="M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5M1.5 8h13"/>
+        </svg>
+        <span>English (United States)</span>
+      </a>
+
+      <a href="#" class="footer-link privacy-choices-btn">
+        <svg class="privacy-icon-svg" viewBox="0 0 28 14" width="26" height="13" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="27" height="13" rx="6.5" fill="#0078d4" stroke="#0078d4" />
+          <path d="M1 7A6 6 0 0 1 7 1h5.5v12H7a6 6 0 0 1-6-6z" fill="#ffffff" />
+          <path d="M3.8 6.8l2.2 2.2 4.2-4.2" fill="none" stroke="#0078d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M17.5 4.5l4.5 4.5M22 4.5l-4.5 4.5" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <span>Your Privacy Choices</span>
+      </a>
+
+      <a href="#" class="footer-link">Consumer Health Privacy</a>
+    </div>
+
+    <div class="footer-links-row">
+      <a href="#" class="footer-link">Privacy &amp; Cookies</a>
+      <a href="#" class="footer-link">Terms of use</a>
+      <a href="#" class="footer-link">Contact us</a>
+      <a href="#" class="footer-link">Feedback</a>
+      <span>&copy; Avantis 2026</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

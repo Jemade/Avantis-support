@@ -1,0 +1,23 @@
+# Logs
+*.log
+feedback/feedback_submissions.log
+
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Python cache & venv
+__pycache__/
+*.pyc
+.venv/
+backend/.venv/
+
+# Build artifacts
+frontend/dist/
+backend/dist/
+backend/build/
+electron/dist-installer/
+
+# OS files
+.DS_Store
+Thumbs.db

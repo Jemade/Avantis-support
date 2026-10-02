@@ -1,4 +1,5 @@
 import logo from "../assets/avantis-logo.png";
+import { FEEDBACK_URL } from "../api.js";
 
 const icons = {
   assist: (
@@ -12,6 +13,12 @@ const icons = {
   ),
   network: (
     <svg viewBox="0 0 20 20"><path d="M2.5 8a10 10 0 0 1 15 0M5 11a6.5 6.5 0 0 1 10 0M7.6 14a3 3 0 0 1 4.8 0" /><circle cx="10" cy="16.5" r="0.9" className="fill" /></svg>
+  ),
+  feedback: (
+    <svg viewBox="0 0 20 20">
+      <path d="M3.5 4.5A1.5 1.5 0 0 1 5 3h10a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H8.5L5 17v-3H5A1.5 1.5 0 0 1 3.5 12.5v-8z" />
+      <path d="M7 7.5h6M7 10h4" />
+    </svg>
   ),
   about: (
     <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" /><path d="M10 9v5" /><circle cx="10" cy="6.4" r="0.9" className="fill" /></svg>
@@ -42,6 +49,20 @@ export default function Sidebar({ page, onNavigate }) {
         ))}
       </div>
       <div className="nav-group bottom">
+        <button
+          className={page === "feedback" ? "nav-item active" : "nav-item"}
+          onClick={() => {
+            window.open(FEEDBACK_URL, "_blank");
+            onNavigate("feedback");
+          }}
+          title="Give feedback (opens in browser)"
+        >
+          {icons.feedback}
+          <span>Feedback</span>
+          <svg viewBox="0 0 16 16" width="11" height="11" style={{ marginLeft: "auto", opacity: 0.65 }} aria-hidden="true">
+            <path d="M6 3h7v7M13 3L6.5 9.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
         <button className={page === "about" ? "nav-item active" : "nav-item"} onClick={() => onNavigate("about")}>
           {icons.about}
           <span>About</span>

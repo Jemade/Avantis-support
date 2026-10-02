@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 // Leave empty to use the built-in proxy (see vite.config.js).
 // To point at a backend somewhere else, set VITE_API_BASE before building.
 const BASE = import.meta.env.VITE_API_BASE || "";
+export const FEEDBACK_URL =
+  import.meta.env.VITE_FEEDBACK_URL ||
+  (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
+    ? "http://127.0.0.1:8080"
+    : "https://avantis.co.zw/feedback/");
 
 // Fetches `path` now and again every `intervalMs`. Every value shown in the app
 // comes from here, straight from the backend running on the computer.
