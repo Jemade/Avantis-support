@@ -50,10 +50,9 @@ export default function Sidebar({ page, onNavigate }) {
       </div>
       <div className="nav-group bottom">
         <button
-          className={page === "feedback" ? "nav-item active" : "nav-item"}
+          className="nav-item"
           onClick={() => {
             window.open(FEEDBACK_URL, "_blank");
-            onNavigate("feedback");
           }}
           title="Feedback"
         >

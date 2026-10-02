@@ -6,7 +6,6 @@ import Performance from "./pages/Performance.jsx";
 import Storage from "./pages/Storage.jsx";
 import Network from "./pages/Network.jsx";
 import About from "./pages/About.jsx";
-import Feedback from "./pages/Feedback.jsx";
 import favicon from "./assets/favicon.png";
 
 export default function App() {
@@ -40,7 +39,6 @@ export default function App() {
         {page === "performance" && <Performance />}
         {page === "storage" && <Storage />}
         {page === "network" && <Network />}
-        {page === "feedback" && <Feedback />}
         {page === "about" && <About />}
       </main>
     </div>
