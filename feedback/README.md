@@ -1,33 +1,27 @@
-# Avantis PC Assist - Feedback Web Page & Mailer
+# PC Assist feedback page
 
-This folder contains the standalone, static feedback web page and PHP email handler for Avantis PC Assist.
+A separate HTML/CSS/JavaScript form with a PHP submission handler. It is hosted independently from the desktop application.
 
 ## Files
-- `index.html`: Modern, responsive HTML5 feedback interface matching Avantis brand styling and the Microsoft Bing-inspired layout.
-- `styles.css`: Clean styles featuring Avantis teal (`#13A3AF`), smooth transitions, responsive card layout, and accessible states.
-- `script.js`: Interactive client-side logic for real-time validation, character counting, category selection, and AJAX submission.
-- `send_feedback.php`: Backend mail script that sanitizes user input, logs every response to `feedback_submissions.log`, and dispatches formatted HTML emails to **`jayden.mapasure@avantis.co.zw`**.
-- `assets/`: Contains `avantis-logo.png` and `favicon.png`.
 
----
+- `index.html`: feedback form.
+- `styles.css`: layout and brand styling.
+- `script.js`: validation and submission.
+- `send_feedback.php`: input handling, log writing, and email delivery.
+- `assets/`: logo and favicon.
 
-## How to Test Locally
+## Local preview
 
-If you have PHP installed:
-1. Open a terminal in this folder:
-   ```bash
-   cd feedback
-   php -S 127.0.0.1:8080
-   ```
-2. Open your browser to `http://127.0.0.1:8080`.
-3. Submit a test feedback message. The submission will be logged to `feedback_submissions.log` and dispatched via PHP's `mail()` service.
+From this directory:
 
----
+```bash
+php -S 127.0.0.1:8080
+```
 
-## Deployment to Production (e.g., avantis.co.zw)
+Open http://127.0.0.1:8080. A PHP server previews the form and handler; successful email delivery additionally requires a configured mail transport.
 
-Upload this entire `feedback/` directory to your web server (e.g., cPanel `public_html/feedback` or Nginx/Apache document root).
-Ensure PHP mail service or an SMTP relay (like SendGrid, Mailgun, or Postfix) is enabled on the server to send emails to `jayden.mapasure@avantis.co.zw`.
+## Hosting
 
-Once deployed, the live URL will be:
-`https://avantis.co.zw/feedback/`
+Deploy the directory to a PHP-capable web server. Review the recipient address in `send_feedback.php`, configure server mail delivery, and give the handler an appropriate writable log location. Feedback submissions may contain personal information, so keep logs outside public file access and set a retention policy.
+
+The desktop application's feedback navigation is currently disabled; deploying this page does not enable that integration.
